@@ -18,36 +18,37 @@ const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <img id="icon-close" src={`${BASE}assets/menu-close-64.png`} alt="close menu" />
   </button>
 
-  <nav id="sidebar">
-    <div class="profile">
-      <a href={BASE} class="profile-link">
-        <img src={`${BASE}assets/profile.jpeg`} alt="profile picture" class="profile-img" />
-        <p>Ulan Rakymzhanov</p>
-        <p class="home-label">- home -</p>
-      </a>
-    </div>
-    <ul class="nav-links">
-      <li><a href={`${BASE}blogs`}>✍🏻 Blogs</a></li>
-      <li><a href={`${BASE}projects`}>🛠️ Projects</a></li>
-      <li><a href={`${BASE}videos`}>📺 Teaching Videos</a></li>
-      <li><a href={`${BASE}certificates`}>📜 Qualifications</a></li>
-      <li>
-        <a href="https://www.goodreads.com/review/list/120002670-ulan-rakymzhanov?ref=nav_mybooks&shelf=read" target="_blank" rel="noreferrer">
-          📚 Bookshelf
+  <div id="layout">
+    <nav id="sidebar">
+      <div class="profile">
+        <a href={BASE} class="profile-link">
+          <img src={`${BASE}assets/profile.jpeg`} alt="profile picture" class="profile-img" />
+          <p>Ulan Rakymzhanov</p>
+          <p class="home-label">- home -</p>
         </a>
-      </li>
-    </ul>
-  </nav>
+      </div>
+      <ul class="nav-links">
+        <li><a href={`${BASE}blogs`}>✍🏻 Blogs</a></li>
+        <li><a href={`${BASE}projects`}>🛠️ Projects</a></li>
+        <li><a href={`${BASE}videos`}>📺 Teaching Videos</a></li>
+        <li><a href={`${BASE}certificates`}>📜 Qualifications</a></li>
+        <li>
+          <a href="https://www.goodreads.com/review/list/120002670-ulan-rakymzhanov?ref=nav_mybooks&shelf=read" target="_blank" rel="noreferrer">
+            📚 Bookshelf
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="https://www.linkedin.com/in/ulan-rakymzhanov/" target="_blank" rel="noreferrer">
+          <img src={`${BASE}assets/linkedIn.svg`} class="footer-icon" alt="linkedin" />
+        </a>
+      </div>
+    </nav>
 
-  <main>
-    <slot />
-  </main>
-
-  <footer>
-    <a href="https://www.linkedin.com/in/ulan-rakymzhanov/" target="_blank" rel="noreferrer">
-      <img src={`${BASE}assets/linkedIn.svg`} class="footer-icon" alt="linkedin" />
-    </a>
-  </footer>
+    <main>
+      <slot />
+    </main>
+  </div>
 
 </body>
 </html>
@@ -79,7 +80,9 @@ const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 </script>
 
 <style>
+  /* ── Burger button — mobile only ── */
   #burger-btn {
+    display: none;
     position: fixed;
     z-index: 10;
     left: 20px;
@@ -96,31 +99,32 @@ const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     height: 100%;
   }
 
-  #sidebar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: var(--mainBlack);
-    padding-top: 60px;
+  /* ── Two-column layout ── */
+  #layout {
+    display: flex;
     min-height: 100vh;
-    height: 100vh;
-    font-size: var(--mainFont);
-    color: var(--sidebarColor);
-    transition: transform 0.3s ease-in;
-    transform: translateX(-100%);
-    overflow: hidden;
-    width: 100%;
-    z-index: 9;
   }
-  #sidebar.open {
-    position: fixed;
-    transform: translateX(0);
+
+  /* ── Sidebar ── */
+  #sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: var(--mainBlack);
+    color: var(--sidebarColor);
+    font-size: var(--mainFont);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .profile {
     text-align: center;
     font-weight: bold;
-    overflow: hidden;
     margin-bottom: 10px;
   }
   .profile-link {
@@ -144,8 +148,8 @@ const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     color: var(--white);
   }
   .profile-img {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 10px;
@@ -159,9 +163,10 @@ const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     padding: 0;
     text-align: center;
     list-style: none;
+    width: 100%;
   }
   .nav-links li {
-    padding: 18px 0;
+    padding: 14px 0;
     color: var(--yellowgreen);
     transition: color 0.4s linear;
   }
@@ -170,27 +175,57 @@ const BASE = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   }
   .nav-links a {
     color: inherit;
-    line-height: 24px;
-    font-size: 24px;
+    font-size: 16px;
   }
 
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 20px 0;
+  }
+  .footer-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* ── Main content ── */
   main {
-    padding: 20px;
+    flex: 1;
+    padding: 40px;
     min-height: 100vh;
   }
 
-  footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    padding: 5px;
-  }
-  footer a {
-    margin-right: 10px;
-  }
-  .footer-icon {
-    width: 30px;
-    height: 30px;
+  /* ── Mobile: hide sidebar, show burger ── */
+  @media (max-width: 768px) {
+    #burger-btn {
+      display: block;
+    }
+
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-width: unset;
+      height: 100vh;
+      z-index: 9;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in;
+      padding-top: 60px;
+    }
+    #sidebar.open {
+      transform: translateX(0);
+    }
+
+    .nav-links a {
+      font-size: 24px;
+    }
+    .nav-links li {
+      padding: 18px 0;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 100%;
+    }
   }
 </style>

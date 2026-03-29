@@ -1,32 +1,38 @@
 ---
-import Layout from '../components/Layout.astro';
-import { projects } from '../data/dataStore.js';
+import Layout from "../components/Layout.astro";
+import { projects } from "../data/dataStore.js";
 ---
 
 <Layout title="Projects">
   <div class="projects-wrapper">
-    <p><em id="git-link">All projects have source code</em></p>
-    <p id="stack">
-      <span>High Level Stack:</span> JavaScript, ReactJS, React Native(Mobile), NextJS,
-      GatsbyJS, Socket.IO, HTML, CSS and backend integrations. No code platforms.
-    </p>
     <div class="row">
-      {projects.map((group) => (
+      <p id="stack">
+        <span>Engineer and Consultant</span>
+      </p><br />Comfortable across the entire stack —
+      frontend, backend, mobile, and AI integrations. If it can be built, I'll
+      find a way to build it.
+    </div>
+    {
+      projects.map((group) => (
         <div>
           <br />
           <h4>{group.title}</h4>
           <hr />
           {group.content.map((item) => (
             <div class="project-card">
-              <a href={item.projectUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={item.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {item.title} <span class="navigate-icon">↗</span>
                 <p>{item.definition}</p>
               </a>
             </div>
           ))}
         </div>
-      ))}
-    </div>
+      ))
+    }
   </div>
 </Layout>
 
