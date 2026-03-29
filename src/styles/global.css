@@ -1,0 +1,28 @@
+::-webkit-scrollbar {
+  display: none;
+}
+:root {
+  --font: monaco, Consolas, "Lucida Console", monospace;
+  --mainBlack: #000;
+  --blogFont: "Roboto", sans-serif;
+  --blogColor: #4d4d4d;
+  --blogHeaderColor: #1d1d1d;
+  --mainFont: 12px;
+  --sidebarColor: #dadada;
+  --white: #fff;
+  --darkred: darkred;
+  --yellowgreen: yellowgreen;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+body {
+  background: var(--white);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+}

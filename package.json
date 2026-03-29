@@ -1,0 +1,16 @@
+{
+  "name": "ulan13",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "astro": "^6.1.1",
+    "gh-pages": "^5.0.0"
+  }
+}

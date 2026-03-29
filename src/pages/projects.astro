@@ -1,0 +1,103 @@
+---
+import Layout from '../components/Layout.astro';
+import { projects } from '../data/dataStore.js';
+---
+
+<Layout title="Projects">
+  <div class="projects-wrapper">
+    <p><em id="git-link">All projects have source code</em></p>
+    <p id="stack">
+      <span>High Level Stack:</span> JavaScript, ReactJS, React Native(Mobile), NextJS,
+      GatsbyJS, Socket.IO, HTML, CSS and backend integrations. No code platforms.
+    </p>
+    <div class="row">
+      {projects.map((group) => (
+        <div>
+          <br />
+          <h4>{group.title}</h4>
+          <hr />
+          {group.content.map((item) => (
+            <div class="project-card">
+              <a href={item.projectUrl} target="_blank" rel="noopener noreferrer">
+                {item.title} <span class="navigate-icon">↗</span>
+                <p>{item.definition}</p>
+              </a>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .projects-wrapper {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 50px;
+  }
+  #git-link {
+    color: gray;
+  }
+  .row {
+    margin-bottom: 20px;
+    width: 60%;
+    margin: 0 auto;
+  }
+  .project-card {
+    background-image: linear-gradient(to right, #998d23, #23998d);
+    border-radius: 5px;
+    padding: 5px;
+    transition: 1.5s;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+  .navigate-icon {
+    font-size: 14px;
+  }
+  .project-card a {
+    font-size: 18px;
+    color: inherit;
+  }
+  .project-card p {
+    color: #333;
+    font-size: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .project-card:hover {
+    background: #333;
+    color: #fff;
+  }
+  .project-card:hover a {
+    color: #ffe69b;
+  }
+  .project-card:hover p {
+    color: #fff;
+  }
+  #stack {
+    font-size: 14px;
+  }
+  #stack span {
+    background-color: #3f51b5;
+    padding: 1px 5px;
+    color: #fff;
+    border-radius: 2px;
+    font-weight: 900;
+  }
+  @media (max-width: 700px) {
+    .row {
+      width: 100%;
+    }
+    .project-card {
+      margin-bottom: 10px;
+    }
+    .project-card a {
+      font-size: 12px;
+    }
+    .navigate-icon {
+      font-size: 12px;
+    }
+  }
+</style>

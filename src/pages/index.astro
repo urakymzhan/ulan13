@@ -1,0 +1,42 @@
+---
+import Layout from '../components/Layout.astro';
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Home">
+  <div class="home-wrapper">
+    <h1>Hi, <span>I'm Ulan</span></h1>
+    <p>I like to transform my ideas into <code>code</code></p>
+    <p>Fan of <code>hiking</code>, <code>running</code> and <code>coffee</code></p>
+    <h3>Purpose of this website:</h3>
+    <p>Express my personal ideas</p>
+    <p>Link to my projects</p>
+    <p>Be useful to the world in some ways</p>
+    <p>
+      Check out my <a href={`${BASE}blogs`}>blogs</a>,{' '}
+      <a href={`${BASE}projects`}>projects</a> and more from top left menu
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .home-wrapper {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .home-wrapper h1 span {
+    color: var(--darkred);
+  }
+  .home-wrapper code {
+    text-shadow: 0 0 20px var(--darkred);
+  }
+  .home-wrapper a {
+    font-size: 20px;
+    font-weight: 900;
+  }
+  .bornplaceAndSocialMedia {
+    margin-top: 30px;
+    color: gray;
+    font-size: 10px;
+  }
+</style>

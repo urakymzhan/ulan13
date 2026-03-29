@@ -1,0 +1,46 @@
+---
+import Layout from '../../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const blogs = await getCollection('blogs');
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="All Blogs">
+  <div class="blog-headers">
+    <h2>All blogs</h2>
+    <hr />
+    <div class="blog-titles">
+      {blogs.map((blog) => (
+        <a href={`${BASE}blogs/${blog.id}`}>
+          <h3 class="blog-headline-header">
+            {blog.data.title} <span class="blog-headline-tags">#{blog.data.tag}</span>
+          </h3>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .blog-headers {
+    text-align: center;
+    overflow: hidden;
+  }
+  .blog-titles {
+    text-align: left;
+  }
+  .blog-titles a {
+    color: #000;
+  }
+  .blog-titles a:hover {
+    text-decoration: underline;
+  }
+  .blog-headline-header {
+    margin-bottom: 0;
+  }
+  .blog-headline-tags {
+    font-size: 0.6rem;
+    color: darkred;
+  }
+</style>
